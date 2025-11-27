@@ -10,7 +10,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="decayspecsim",
     version="1.0.0",
-    author="DecaySpecSim Team",
+    author="YanBang Tang",
+    author_email="yanbang.tang@cern.ch",
     description="Nuclear decay spectrum simulator based on Decay2012 database",
     long_description=long_description,
     long_description_content_type="text/markdown",
