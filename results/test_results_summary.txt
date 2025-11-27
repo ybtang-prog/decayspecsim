@@ -1,0 +1,84 @@
+DecaySpecSim Test Results Summary
+==================================
+
+Test Case 1: Co-60 Information
+-------------------------------
+Command: python decayspecsim.py --nuclide Co-60 --info
+Status: PASSED
+Output: Nuclide information displayed correctly
+- ZAI: 270600
+- Half-life: 1925.20 days
+- Decay modes: gamma (6 lines), beta (3 lines), electron (14 lines), x-ray (4 lines)
+
+Test Case 2: Co-60 Theoretical Gamma Spectrum
+-----------------------------------------------
+Command: python decayspecsim.py --nuclide Co-60 --type gamma --output results/co60_theoretical.csv --bins 2000
+Status: PASSED
+Output: results/co60_theoretical.csv
+- Contains discrete gamma lines at 1173.23 keV and 1332.49 keV
+- Format: CSV with Energy (keV) and Counts columns
+
+Test Case 3: Co-60 HPGe Detector Simulation
+--------------------------------------------
+Command: python decayspecsim.py --nuclide Co-60 --type gamma --detector hpge --resolution "0.1,0.0005,0" --plot results/co60_hpge.png --bins 2000
+Status: PASSED
+Output: results/co60_hpge.png
+- Shows two sharp photopeaks at 1173 and 1332 keV
+- High resolution (HPGe) with narrow peaks
+- Includes escape peaks and Compton continuum
+
+Test Case 4: Co-60 NaI Detector Simulation
+--------------------------------------------
+Command: python decayspecsim.py --nuclide Co-60 --type gamma --detector nai --resolution "0,0.006,0" --plot results/co60_nai.png --bins 2000
+Status: PASSED
+Output: results/co60_nai.png
+- Shows broader peaks compared to HPGe
+- Lower resolution (NaI) with wider peaks
+- Includes Compton continuum and backscatter peaks
+
+Test Case 5: H-3 Beta Spectrum
+-------------------------------
+Command: python decayspecsim.py --nuclide H-3 --type beta --plot results/h3_beta_spectrum.png --energy_range "0,20" --bins 1000
+Status: PASSED
+Output: results/h3_beta_spectrum.png
+- Continuous beta spectrum from 0 to ~18.6 keV endpoint
+- Smooth curve with peak around 3-4 keV
+- Validates Fermi theory beta spectrum calculation
+
+Test Case 6: Cs-137 Full Spectrum (NaI)
+-----------------------------------------
+Command: python decayspecsim.py --nuclide Cs-137 --type all --detector nai --plot results/cs137_full_spectrum.png --bins 2000
+Status: PASSED
+Output: results/cs137_full_spectrum.png
+- Combined beta continuum (0-514 keV) and gamma peak (661.7 keV)
+- Shows Compton edge and backscatter peak
+- Demonstrates complex decay simulation
+
+Test Case 7: Sr-90 Decay Chain Evolution
+------------------------------------------
+Command: python decayspecsim.py --nuclide Sr-90 --decay_chain --time_points "0, 7d, 30d, 365d" --type beta --plot results/sr90_chain_evolution.png --energy_range "0,3000" --bins 1500
+Status: PASSED
+Output: results/sr90_chain_evolution.png
+- Shows evolution of beta spectrum over time
+- Initial spectrum: Sr-90 only (~546 keV endpoint)
+- Later spectra: Y-90 contribution appears (~2280 keV endpoint)
+- Demonstrates radioactive equilibrium
+
+All Tests: PASSED
+=================
+
+All test cases completed successfully. The software correctly:
+- Loads and queries Decay2012 database
+- Generates theoretical discrete and continuous spectra
+- Simulates detector responses (HPGe and NaI)
+- Handles complex decay chains
+- Produces publication-quality plots
+
+Generated Files:
+- results/co60_theoretical.csv
+- results/co60_hpge.png
+- results/co60_nai.png
+- results/h3_beta_spectrum.png
+- results/cs137_full_spectrum.png
+- results/sr90_chain_evolution.png
+
